@@ -3,10 +3,9 @@ package com.douaa.accessoires.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.douaa.accessoires.entities.Accessoire;
+import com.douaa.accessoires.entities.Couleur;
 import com.douaa.accessoires.repos.AccessoireRepository;
 
 @Service
@@ -45,10 +44,39 @@ public class AccessoireServiceImpl implements AccessoireService{
 	public List<Accessoire> getAllAccessoires() {
 		return accessoireRepository.findAll();
 	}
+	@Override
+	public List<Accessoire> findByDesignation(String designation) {
+		return accessoireRepository.findByDesignation(designation);
+	}
 
 	@Override
-	public Page<Accessoire> getAllAccessoiresParPage(int page, int size) {
-		return accessoireRepository.findAll(PageRequest.of(page, size)); 
+	public List<Accessoire> findByDesignationContains(String designation) {
+		return accessoireRepository.findByDesignationContains(designation);
+	}
+
+	@Override
+	public List<Accessoire> findByDesignationTarif(String designation, Double tarif) {
+		return accessoireRepository.findByDesignationTarif(designation,tarif);
+	}
+
+	@Override
+	public List<Accessoire> findByCouleur(Couleur couleur) {
+		return accessoireRepository.findByCouleur(couleur);
+	}
+
+	@Override
+	public List<Accessoire> findByCouleurIdCoul(Long id) {
+		return accessoireRepository.findByCouleurIdCoul(id);
+	}
+
+	@Override
+	public List<Accessoire> findByOrderByDesignationAsc() {
+		return accessoireRepository.findByOrderByDesignationAsc();
+	}
+
+	@Override
+	public List<Accessoire> trierAccessoiresDesignationsTarif() {
+		return accessoireRepository.trierAccessoiresDesignationsTarif();
 	}
 
 }

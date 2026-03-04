@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -18,6 +19,8 @@ public class Accessoire {
 	private Double tarif;
 	private Date dateAjout;
 	
+	@ManyToOne
+	private Couleur couleur;
 	
 	public Accessoire() {
 		super();
@@ -59,6 +62,14 @@ public class Accessoire {
 	public String toString() {
 		return "Accessoires [codeAcc=" + codeAcc + ", designation=" + designation + ", tarif=" + tarif + ", dateAjout="
 				+ dateAjout + "]";
+	}
+
+	public Couleur getCouleur() {
+		return couleur;
+	}
+
+	public void setCouleur(Couleur couleur) {
+		this.couleur = couleur;
 	}
 
 	
