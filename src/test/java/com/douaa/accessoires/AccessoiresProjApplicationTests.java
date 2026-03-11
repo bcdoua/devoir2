@@ -28,7 +28,7 @@ class AccessoiresProjApplicationTests {
 	@Test
 	public void testFindAccessoire()
 	{
-		Accessoire a = accessoireRepository.findById(1L).get();
+		Accessoire a = accessoireRepository.findById(3L).get();
 	System.out.println(a);
 	}
 	@Test
@@ -53,7 +53,7 @@ class AccessoiresProjApplicationTests {
 	}
 	
 	@Test 
-	public void testFindByNomProduitContains() 
+	public void testGetAllAccessoiresParPage() 
 	{ 
 	Page<Accessoire>  accs = accessoireService.getAllAccessoiresParPage(0,2); 
 	System.out.println(accs.getSize()); 
@@ -61,12 +61,7 @@ class AccessoiresProjApplicationTests {
 	System.out.println(accs.getTotalPages()); 
 	
 	accs.getContent().forEach(a -> {System.out.println(a.toString()); 
-	});  
-	/*ou bien 
-	for (Accessoire a : accs)
-	{ 
-	System.out.println(a); 
-	} */
+	});
 	}
 	
 	@Test
@@ -115,7 +110,7 @@ class AccessoiresProjApplicationTests {
 	@Test 
 	public void findByCouleurIdCoul() 
 	{    
-	List<Accessoire>  accs = accessoireRepository.findByCouleurIdCoul(1L); 
+	List<Accessoire>  accs = accessoireRepository.findByCouleurIdCoul(2L); 
 	for (Accessoire a : accs) 
 	{ 
 		System.out.println(a); 

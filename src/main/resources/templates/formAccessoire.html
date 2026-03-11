@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Gestion des Accessoires</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+
+	<div th:replace="~{template :: menu}"></div>
+
+	<div class="container mt-5">
+
+		<div class="card">
+
+			<div class="card-header" th:if="${mode=='new'}">
+				Ajout des Accessoires
+			</div>
+
+			<div class="card-header" th:if="${mode=='edit'}">
+				Modification des Accessoires
+			</div>
+
+			<div class="card-body">
+
+				<form th:action="@{saveAccessoire}" method="post" th:object="${accessoire}">
+
+					<!-- ID caché -->
+					<div class="form-group">
+						<input type="hidden" name="codeAcc" th:value="*{codeAcc}" />
+					</div>
+
+					<!-- DESIGNATION -->
+					<div class="form-group">
+						<label class="control-label">Désignation :</label>
+						<input type="text" name="designation" class="form-control" th:value="*{designation}" />
+						<span th:errors="*{designation}" class="text-danger"></span>
+					</div>
+
+					<!-- TARIF -->
+					<div class="form-group">
+						<label class="control-label">Tarif :</label>
+						<input type="text" name="tarif" class="form-control" th:value="*{tarif}" />
+						<span th:errors="*{tarif}" class="text-danger"></span>
+					</div>
+
+					<!-- DATE -->
+					<div class="form-group">
+						<label class="control-label">Date d'ajout :</label>
+						<input type="date" name="dateAjout" class="form-control" th:value="*{dateAjout}" />
+						<span th:errors="*{dateAjout}" class="text-danger"></span>
+					</div>
+					<!-- COULEUR -->
+
+					<div class="form-group">
+
+						<label class="control-label">Couleur :</label>
+
+						<select name="couleur" class="form-control" th:value="${accessoire.couleur.idCoul}"
+							th:if="${!#strings.isEmpty(accessoire.couleur)}">
+
+							<option th:each="c:${couleurs}" th:value="${c.idCoul}" th:text="${c.nomCoul}"
+								th:selected="${c.idCoul==accessoire.couleur.idCoul}">
+							</option>
+
+						</select>
+
+						<select name="couleur" class="form-control" th:if="${#strings.isEmpty(accessoire.couleur)}">
+
+							<option th:each="c:${couleurs}" th:value="${c.idCoul}" th:text="${c.nomCoul}">
+							</option>
+
+						</select>
+
+					</div>
+
+					<!-- BOUTON -->
+
+					<div>
+
+						<button type="submit" class="btn btn-primary">
+
+							Valider
+
+						</button>
+
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
+```

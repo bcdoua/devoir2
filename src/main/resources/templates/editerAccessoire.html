@@ -1,0 +1,76 @@
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="utf-8">
+	<title>Modifier Accessoire</title>
+
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+	<div th:replace="template"></div>
+
+	<div class="container mt-5">
+
+		<div class="card">
+
+			<div class="card-header">
+				Modifier Accessoire
+			</div>
+
+			<div class="card-body">
+
+				<form th:action="@{updateAccessoire}" method="post">
+
+					<div class="form-group">
+						<label hidden>ID Accessoire :</label>
+
+						<input type="hidden" name="codeAcc" class="form-control" th:value="${accessoire.codeAcc}" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Désignation :</label>
+
+						<input type="text" name="designation" class="form-control"
+							th:value="${accessoire.designation}" />
+
+						<span th:errors="${accessoire.designation}" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Tarif :</label>
+
+						<input type="text" name="tarif" class="form-control" th:value="${accessoire.tarif}" />
+
+						<span th:errors="${accessoire.tarif}" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Date Ajout :</label>
+
+						<input type="date" name="date" class="form-control" th:value="${accessoire.dateAjout}" />
+
+						<span th:errors="${accessoire.dateAjout}" class="text-danger"></span>
+					</div>
+
+					<div>
+						<button type="submit" class="btn btn-primary">
+							Valider
+						</button>
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
+```

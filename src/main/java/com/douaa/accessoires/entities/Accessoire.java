@@ -2,11 +2,18 @@ package com.douaa.accessoires.entities;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+
+import jakarta.validation.constraints.Max; 
+import jakarta.validation.constraints.Min; 
+import jakarta.validation.constraints.NotNull; 
+import jakarta.validation.constraints.Size; 
+import jakarta.validation.constraints.PastOrPresent;
 
 
 @Entity
@@ -15,8 +22,17 @@ public class Accessoire {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codeAcc;
+	
+	@NotNull
+	@Size (min = 4,max = 15) 
 	private String designation;
+	
+	@Min(value = 10) 
+	@Max(value = 10000) 
 	private Double tarif;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@PastOrPresent 
 	private Date dateAjout;
 	
 	@ManyToOne
@@ -60,8 +76,8 @@ public class Accessoire {
 
 	@Override
 	public String toString() {
-		return "Accessoires [codeAcc=" + codeAcc + ", designation=" + designation + ", tarif=" + tarif + ", dateAjout="
-				+ dateAjout + "]";
+	    return "Accessoire [codeAcc=" + codeAcc +", designation=" + designation 
+	    		+", tarif=" + tarif +", dateAjout=" + dateAjout +"]";
 	}
 
 	public Couleur getCouleur() {
